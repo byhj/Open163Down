@@ -16,3 +16,9 @@ pip3 install you-get
 python 163.py Website
 ```
 运行命令后自动创建目录进行下， Website为网易公开课专辑网址
+
+## GUI界面
+需安装pyqt5
+```
+pip3 install PyQt5
+```
