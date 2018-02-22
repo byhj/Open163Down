@@ -1,4 +1,4 @@
-
+﻿
 import urllib.request
 import bs4
 import sys
@@ -17,15 +17,18 @@ def getDownList(website, keyword):
 if __name__=="__main__" :
     website = str(sys.argv[1])     # get the download website
     keyword = "http://open.163.com/movie/"
-    downList = getDownList(website, keyword)
-    dirName = website[website.rfind("/")+1 : website.rfind(".")]
-    targetPath = os.path.join(os.getcwd(), dirName)
-    if not os.path.exists(targetPath):   #create the download dir according the course
-        os.mkdir(targetPath)
-    os.chdir(targetPath)
+    if website != "":
+      downList = getDownList(website, keyword)
+      dirName = website[website.rfind("/")+1 : website.rfind(".")]
+      if dirName == "":
+          dirName = website[website.rfind("/", 0, len(dirName)-1)+1 : website.rfind("/")]
+      targetPath = os.path.join(os.getcwd(), dirName)
+      if not os.path.exists(targetPath):   #create the download dir according the course
+          os.mkdir(targetPath)
+      os.chdir(targetPath)
 
-    cmd = "you-get %s"   #run the you-get to download the video
-    for url in downList :
-        os.system(cmd %url)
+      cmd = "you-get %s"   #run the you-get to download the video
+      for url in downList :
+          os.system(cmd %url)
 
 
